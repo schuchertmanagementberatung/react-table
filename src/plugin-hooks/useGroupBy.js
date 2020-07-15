@@ -126,6 +126,7 @@ function useInstance(instance) {
     flatHeaders,
     groupByFn = defaultGroupByFn,
     manualGroupBy,
+    compareGroupFn = defaultCompareGroupFn,
     aggregations: userAggregations = defaultUserAggregations,
     plugins,
     state: { groupBy },
@@ -205,7 +206,7 @@ function useInstance(instance) {
 
     // Ensure that the list of filtered columns exist
     const existingGroupBy = groupBy.filter(g =>
-      allColumns.find(col => col.id === g)
+      allColumns.find(col => compareGroupFn(col, g))
     )
 
     // Find the columns that can or are aggregating
@@ -215,7 +216,7 @@ function useInstance(instance) {
 
       allColumns.forEach(column => {
         // Don't aggregate columns that are in the groupBy
-        if (existingGroupBy.includes(column.id)) {
+        if (existingGroupBy.some(g => compareGroupFn(column, g))) {
           values[column.id] = groupedRows[0]
             ? groupedRows[0].values[column.id]
             : null
@@ -406,6 +407,10 @@ function prepareRow(row) {
     // Aggregated cells are not grouped, not repeated, but still have subRows
     cell.isAggregated = !cell.isGrouped && !cell.isPlaceholder && row.canExpand
   })
+}
+
+function defaultCompareGroupFn(group, columnId) {
+  return group.id === columnId;
 }
 
 export function defaultGroupByFn(rows, columnId) {
