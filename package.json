@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Hooks for building lightweight, fast and extendable datagrids for React",
   "license": "MIT",
-  "homepage": "https://react-table.js.org",
+  "homepage": "https://react-table.tanstack.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/schuchertmanagementberatung/react-table.git"
@@ -28,8 +28,6 @@
     "build": "cross-env NODE_ENV=production rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn build",
-    "release": "yarn publish",
-    "releaseNext": "yarn publish --tag next",
     "format": "prettier {src,src/**,examples/*/src,examples/*/src/**}/*.{md,js,jsx,tsx} --write",
     "docz:build": "docz build",
     "docz:dev": "docz dev",
@@ -37,6 +35,16 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "release": {
+    "branches": [
+      "6.x",
+      "master",
+      {
+        "name": "next",
+        "prerelease": true
+      }
+    ]
   },
   "files": [
     "CHANGELOG.md",
@@ -47,7 +55,7 @@
   ],
   "browserslist": "> 0.25%, not dead",
   "peerDependencies": {
-    "react": "^16.8.3"
+    "react": "^16.8.3 || ^17.0.0-0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -55,6 +63,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "@babel/runtime": "^7.7.2",
+    "@rollup/plugin-replace": "^2.3.3",
     "@svgr/rollup": "^4.3.3",
     "@testing-library/dom": "^6.10.1",
     "@testing-library/jest-dom": "^4.2.4",

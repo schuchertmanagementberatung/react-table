@@ -187,7 +187,7 @@ const Home = props => {
                   Gold Sponsors
                 </div>
                 <a
-                  href="https://www.reactbricks.com/"
+                  href="https://tryretool.com/?utm_source=sponsor&utm_campaign=react_table"
                   target="_blank"
                   className="block w-96 m-auto"
                 >
@@ -264,11 +264,6 @@ const Home = props => {
                     </a>
                   </li>
                   <li className="font-bold text-blue-800">
-                    <a href="https://gitHub.com/samjbmason">
-                      Sam Mason de Caires (@samjbmason)
-                    </a>
-                  </li>
-                  <li className="font-bold text-blue-800">
                     <a href="https://github.com/jthurau">Josh Thurau</a>
                   </li>
                   <li className="font-bold text-blue-800">
@@ -284,9 +279,7 @@ const Home = props => {
                 <ul className="list-none text-center">
                   <li>Hugo Meissner</li>
                   <li>Benoit Leger-Derville</li>
-                  <li>Thomas Funk</li>
                   <li>David Pickut</li>
-                  <li>Jordan Soltman</li>
                   <li>Robert Tajnšek</li>
                   <li>Eric Lanehart (@pushred)</li>
                   <li>Anish P Patel (@anishpatelyaadada)</li>
@@ -295,6 +288,8 @@ const Home = props => {
                   <li>Tyler Reiff (@reiff12)</li>
                   <li>Matt Stvartak (@mattstvartak)</li>
                   <li>JP Rosevear (@jprosevear)</li>
+                  <li>Stefan Khan-Kernahan (@skhanker)</li>
+                  <li>Nicholas Canvoa</li>
                 </ul>
               </div>
               <div className="mt-10">
@@ -302,18 +297,18 @@ const Home = props => {
                   Fans
                 </div>
                 <ul className="list-none text-center">
-                  <li>Stefan Khan-Kernahan (@skhanker)</li>
                   <li>Jesse Jafa (@awareness481)</li>
                   <li>Salik Syed (@saliksyed)</li>
-                  <li>Ujjwal Pachori (@UjjwalP2)</li>
                   <li>Chet Corcos (@ccorcos)</li>
-                  <li>Yefri Laura (@yefrioscar)</li>
                   <li>Muhammad Umar (@umarmuha)</li>
                   <li>Joe Alden (@joalden)</li>
                   <li>Standard Resume (@StandardResumeSponsors)</li>
                   <li>Jay (@jjstrat3)</li>
                   <li>TC Schiller (@tcschiller)</li>
                   <li>Brent Clark (@brentmclark)</li>
+                  <li>Mario Menjívar (@mariomenjr)</li>
+                  <li>Kelley van Evert (@kelleyvanevert)</li>
+                  <li>Aaron VanEtveldt (@totaldis)</li>
                 </ul>
               </div>
             </div>

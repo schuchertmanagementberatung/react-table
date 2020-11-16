@@ -1,9 +1,12 @@
+import React from 'react'
+
 import {
   actions,
   defaultColumn,
   makePropGetter,
   useGetLatest,
   ensurePluginOrder,
+  useMountedLayoutEffect,
 } from '../publicUtils'
 
 import { getFirstDefined, passiveEventSupported } from '../utils'
@@ -15,6 +18,7 @@ defaultColumn.canResize = true
 actions.columnStartResizing = 'columnStartResizing'
 actions.columnResizing = 'columnResizing'
 actions.columnDoneResizing = 'columnDoneResizing'
+actions.resetResize = 'resetResize'
 
 export const useResizeColumns = hooks => {
   hooks.getResizerProps = [defaultGetResizerProps]
@@ -124,7 +128,7 @@ const defaultGetResizerProps = (props, { instance, header }) => {
       onMouseDown: e => e.persist() || onResizeStart(e, header),
       onTouchStart: e => e.persist() || onResizeStart(e, header),
       style: {
-        cursor: 'ew-resize',
+        cursor: 'col-resize',
       },
       draggable: false,
       role: 'separator',
@@ -141,6 +145,15 @@ function reducer(state, action) {
         columnWidths: {},
       },
       ...state,
+    }
+  }
+
+  if (action.type === actions.resetResize) {
+    return {
+      ...state,
+      columnResizing: {
+        columnWidths: {},
+      },
     }
   }
 
@@ -161,7 +174,7 @@ function reducer(state, action) {
 
   if (action.type === actions.columnResizing) {
     const { clientX } = action
-    const { startX, columnWidth, headerIdWidths } = state.columnResizing
+    const { startX, columnWidth, headerIdWidths = [] } = state.columnResizing
 
     const deltaX = clientX - startX
     const percentageDeltaX = deltaX / columnWidth
@@ -217,7 +230,10 @@ const useInstanceBeforeDimensions = instance => {
     )
 
     header.canResize = canResize
-    header.width = columnResizing.columnWidths[header.id] || header.width
+    header.width =
+      columnResizing.columnWidths[header.id] ||
+      header.originalWidth ||
+      header.width
     header.isResizing = columnResizing.isResizingColumn === header.id
 
     if (canResize) {
@@ -229,8 +245,26 @@ const useInstanceBeforeDimensions = instance => {
   })
 }
 
-function useInstance({ plugins }) {
+function useInstance(instance) {
+  const { plugins, dispatch, autoResetResize = true, columns } = instance
+
   ensurePluginOrder(plugins, ['useAbsoluteLayout'], 'useResizeColumns')
+
+  const getAutoResetResize = useGetLatest(autoResetResize)
+  useMountedLayoutEffect(() => {
+    if (getAutoResetResize()) {
+      dispatch({ type: actions.resetResize })
+    }
+  }, [columns])
+
+  const resetResizing = React.useCallback(
+    () => dispatch({ type: actions.resetResize }),
+    [dispatch]
+  )
+
+  Object.assign(instance, {
+    resetResizing,
+  })
 }
 
 function getLeafHeaders(header) {
