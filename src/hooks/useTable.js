@@ -223,9 +223,13 @@ export const useTable = (props, ...plugins) => {
   // those columns (and trigger this memoization via deps)
   let visibleColumns = React.useMemo(
     () =>
-      reduceHooks(getHooks().visibleColumns, allColumns, {
-        instance: getInstance(),
-      }).map(d => decorateColumn(d, defaultColumn)),
+      reduceHooks(
+        getHooks().visibleColumns,
+        allColumns,
+        {
+          instance: getInstance(),
+        }
+      ).map(d => decorateColumn(d, defaultColumn)),
     [
       getHooks,
       allColumns,
