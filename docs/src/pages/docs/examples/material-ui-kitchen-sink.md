@@ -1,5 +1,5 @@
 ---
-id: material-UI-kitchen-sink
+id: material-ui-kitchen-sink
 title: Material-UI Kitchen Sink
 toc: false
 ---
@@ -9,7 +9,7 @@ toc: false
 
 <iframe
   src="https://codesandbox.io/embed/github/tannerlinsley/react-table/tree/master/examples/material-UI-kitchen-sink?autoresize=1&fontsize=14&theme=dark"
-  title="tannerlinsley/react-table: material-UI-kitchen-sink"
+  title="tannerlinsley/react-table: material-ui-kitchen-sink"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   style={{
     width: '100%',

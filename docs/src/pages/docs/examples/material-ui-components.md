@@ -1,5 +1,5 @@
 ---
-id: material-UI-components
+id: material-ui-components
 title: Material-UI
 toc: false
 ---
@@ -9,7 +9,7 @@ toc: false
 
 <iframe
   src="https://codesandbox.io/embed/github/tannerlinsley/react-table/tree/master/examples/material-UI-components?autoresize=1&fontsize=14&theme=dark"
-  title="tannerlinsley/react-table: material-UI-components"
+  title="tannerlinsley/react-table: material-ui-components"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   style={{
     width: '100%',
